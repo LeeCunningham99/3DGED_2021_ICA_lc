@@ -255,7 +255,7 @@ namespace GDApp
                     EventActionType.OnHealthDelta, parameters));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.P))
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Escape))
             {
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                           EventActionType.OnPause));
@@ -337,7 +337,7 @@ namespace GDApp
             Input.Mouse.Position = Screen.Instance.ScreenCentre;
 
             //turn on/off debug info
-            InitializeDebugUI(true, false);
+            //InitializeDebugUI(true, false);
 
             //to show the menu we must start paused for everything else!
             EventDispatcher.Raise(new EventData(EventCategoryType.Menu, EventActionType.OnPause));
@@ -556,15 +556,16 @@ namespace GDApp
                 Vector2.Zero);
 
             //demo button color change
-            var comp = new UIColorMouseOverBehaviour(Color.Orange, Color.White);
+            var comp = new UIColorMouseOverBehaviour(Color.Green, Color.White);
             playBtn.AddComponent(comp);
 
             mainMenuUIScene.Add(playBtn);
 
+
             /**************************** Controls Button ****************************/
 
             //same button texture so we can re-use texture, sourceRectangle and origin
-
+            /*
             var controlsBtn = new UIButtonObject(AppData.MENU_CONTROLS_BTN_NAME, UIObjectType.Button,
                 new Transform2D(AppData.MENU_CONTROLS_BTN_POSITION, 0.5f * Vector2.One, 0),
                 0.1f,
@@ -576,10 +577,10 @@ namespace GDApp
                 Color.Black);
 
             //demo button color change
-            controlsBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Orange, Color.White));
+            controlsBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Black, Color.White));
 
             mainMenuUIScene.Add(controlsBtn);
-
+            */
             /**************************** Exit Button ****************************/
 
             //same button texture so we can re-use texture, sourceRectangle and origin
@@ -596,7 +597,7 @@ namespace GDApp
                 Color.Black);
 
             //demo button color change
-            exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Orange, Color.White));
+            exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Red, Color.White));
 
             mainMenuUIScene.Add(exitBtn);
 
@@ -668,9 +669,10 @@ namespace GDApp
             mainGameUIScene.Add(nameTextObj);
 
             #endregion Add Text
+            
 
             #region Add Reticule
-
+            /*
             var defaultTexture = textureDictionary["reticuleDefault"];
             var alternateTexture = textureDictionary["reticuleOpen"];
             origin = defaultTexture.GetOriginAtCenter();
@@ -690,8 +692,9 @@ namespace GDApp
             reticule.AddComponent(new UIReticuleBehaviour());
 
             mainGameUIScene.Add(reticule);
-
+            */
             #endregion Add Reticule
+            
 
             #region Add Video UI Texture
 
@@ -734,6 +737,7 @@ namespace GDApp
         /// <summary>
         /// Adds component to draw debug info to the screen
         /// </summary>
+        /*
         private void InitializeDebugUI(bool showDebugInfo, bool showCollisionSkins = true)
         {
             if (showDebugInfo)
@@ -747,7 +751,7 @@ namespace GDApp
             if (showCollisionSkins)
                 Components.Add(new GDLibrary.Utilities.GDDebug.PhysicsDebugDrawer(this, Color.Red));
         }
-
+        */
         /******************************* Non-Collidables *******************************/
 
         /// <summary>
@@ -871,7 +875,7 @@ namespace GDApp
             camera = new GameObject(AppData.CAMERA_FIRSTPERSON_COLLIDABLE_NAME, GameObjectType.Camera);
 
             //set initial position - important to set before the collider as collider capsule feeds off this position
-            camera.Transform.SetTranslation(0, 5, 10);
+            camera.Transform.SetTranslation(30, 10, 30);
 
             //add components
             camera.AddComponent(new Camera(_graphics.GraphicsDevice.Viewport));
@@ -887,7 +891,7 @@ namespace GDApp
 
             //add controller to actually move the collidable camera
             camera.AddComponent(new MyCollidableFirstPersonController(12,
-                       0.5f, 0.3f, new Vector2(0.006f, 0.004f)));
+                       0.5f, 0.3f, new Vector2(0.03f, 0.02f)));
 
             //add to level
             level.Add(camera);
@@ -913,6 +917,13 @@ namespace GDApp
 
             //InitializeCollidableModels(level);
             InitializeCollidableTriangleMeshes(level);
+
+            CubeWall1(level);
+            CubeWall2(level);
+            CubeWall3(level);
+            CubeWall4(level);
+
+            MazeWall1(level);
         }
 
         private void InitializeCollidableTriangleMeshes(Scene level)
@@ -1013,7 +1024,153 @@ namespace GDApp
             level.Add(ground);
         }
 
-        private void InitializeCollidableCubes(Scene level)
+        private void MazeWall1(Scene level)
+        {
+                var shader = new BasicShader(Application.Content, false, true);
+                var mesh = new CubeMesh();
+                var cube = new GameObject("cube", GameObjectType.Interactable, false);
+                GameObject clone = null;
+                for (int i = 1; i < 2; i += 1)
+                {
+                    clone = cube.Clone() as GameObject;
+                    clone.Transform.SetRotation(0, 90, 0);
+                    clone.Transform.SetScale(5, 10, 15);
+                    clone.Name = $"cube - {i}";
+                    clone.Transform.Translate(20, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                    clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                    collider = new MyPlayerCollider();
+                    //collider = new Collider(false, false);
+                    clone.AddComponent(collider);
+                    collider.AddPrimitive(new Box(
+                        clone.Transform.LocalTranslation,
+                        clone.Transform.LocalRotation,
+                        clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                        new MaterialProperties(0f, 0f, 0f));
+                    collider.Enable(true, 1);
+                    //add To Scene Manager
+                    level.Add(clone);
+                }
+        }
+
+        #region CubeWalls
+        private void CubeWall1(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 0, 0);
+                clone.Transform.SetScale(5, 10, 150);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(10, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void CubeWall2(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 150);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(85, 2, -63); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void CubeWall3(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 0, 0);
+                clone.Transform.SetScale(5, 10, 150);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void CubeWall4(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 150);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(85, 2, 85); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        #endregion
+
+        private void InitializeCollidableCubes(Scene level)//delete once done with cubes//
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
 
@@ -1038,7 +1195,7 @@ namespace GDApp
                 clone.Transform.Translate(5, 4f * (1 + i), 0);
                 clone.AddComponent(new MeshRenderer(mesh,
                     new BasicMaterial("cube_material", shader,
-                    Color.White, 0.4f, textureDictionary["crate1"])));
+                    Color.White, 1f, textureDictionary["crate1"])));
 
                 //add desc and value to a pickup used when we collect/remove/collide with it
                 //clone.AddComponent(new PickupBehaviour("ammo pack", 15));
