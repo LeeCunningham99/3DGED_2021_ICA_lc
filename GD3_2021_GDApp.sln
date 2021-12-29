@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GD3_2021_GDApp", "GD3_2021_GDApp\GD3_2021_GDApp.csproj", "{ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GD3_2021_GDLibrary", "..\GD3_2021_GDLibrary\GD3_2021_GDLibrary\GD3_2021_GDLibrary.shproj", "{A0CDBD0E-3A41-42B7-9425-A838BC2C7383}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests_GD3_2021_GDLibrary", "Tests_GD3_2021_GDLibrary\Tests_GD3_2021_GDLibrary.csproj", "{6E0883C4-80FA-4472-848E-4ADD97F4791C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D} = {ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D}
+	EndProjectSection
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "JigLibX", "..\JigLibX\JigLibX.shproj", "{52796A7B-90E4-4E28-81B1-288BA46C5599}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\JigLibX\JigLibX.projitems*{52796a7b-90e4-4e28-81b1-288ba46c5599}*SharedItemsImports = 13
+		..\GD3_2021_GDLibrary\GD3_2021_GDLibrary\GD3_2021_GDLibrary.projitems*{a0cdbd0e-3a41-42b7-9425-a838bc2c7383}*SharedItemsImports = 13
+		..\GD3_2021_GDLibrary\GD3_2021_GDLibrary\GD3_2021_GDLibrary.projitems*{aba3c674-e64c-4fb1-af6b-5ee5ba9d833d}*SharedItemsImports = 5
+		..\JigLibX\JigLibX.projitems*{aba3c674-e64c-4fb1-af6b-5ee5ba9d833d}*SharedItemsImports = 5
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABA3C674-E64C-4FB1-AF6B-5EE5BA9D833D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6E0883C4-80FA-4472-848E-4ADD97F4791C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6E0883C4-80FA-4472-848E-4ADD97F4791C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6E0883C4-80FA-4472-848E-4ADD97F4791C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6E0883C4-80FA-4472-848E-4ADD97F4791C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {AE79D336-0906-49B5-86DB-325FD00D09BC}
+	EndGlobalSection
+EndGlobal
