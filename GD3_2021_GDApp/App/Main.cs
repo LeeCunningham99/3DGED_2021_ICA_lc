@@ -921,6 +921,7 @@ namespace GDApp
             CubeWall2(level);
             CubeWall3(level);
             CubeWall4(level);
+            CubeWall5(level);
 
             MazeWall1(level);
             MazeWall2(level);
@@ -936,6 +937,48 @@ namespace GDApp
             MazeWall12(level);
             MazeWall13(level);
             MazeWall14(level);
+            MazeWall15(level);
+            MazeWall16(level);
+            MazeWall17(level);
+            MazeWall18(level);
+            MazeWall19(level);
+            MazeWall20(level);
+            MazeWall21(level);
+            MazeWall22(level);
+            MazeWall23(level);
+            MazeWall24(level);
+            MazeWall25(level);
+            MazeWall26(level);
+            MazeWall27(level);
+            MazeWall28(level);
+            MazeWall29(level);
+            MazeWall30(level);
+            MazeWall31(level);
+            MazeWall32(level);
+            MazeWall33(level);
+            MazeWall34(level);
+            MazeWall35(level);
+            MazeWall36(level);
+            MazeWall37(level);
+            MazeWall38(level);
+            MazeWall39(level);
+            MazeWall40(level);
+            MazeWall41(level);
+            MazeWall42(level);
+            MazeWall43(level);
+            MazeWall44(level);
+            MazeWall45(level);
+            MazeWall46(level);
+            MazeWall47(level);
+            MazeWall48(level);
+            MazeWall49(level);
+            MazeWall50(level);
+            MazeWall51(level);
+            MazeWall52(level);
+            MazeWall53(level);
+            MazeWall54(level);
+            MazeWall55(level);
+            MazeWall56(level);
         }
         private void InitializeCollidableTriangleMeshes(Scene level)
         {
@@ -1036,6 +1079,7 @@ namespace GDApp
         }
 
         #region Maze Walls
+        #region Horizontal Walls
         private void MazeWall1(Scene level)
         {
                 var shader = new BasicShader(Application.Content, false, true);
@@ -1440,8 +1484,1230 @@ namespace GDApp
             }
         }
 
+        private void MazeWall15(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void MazeWall16(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, 30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall17(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, 50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall18(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, 70); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall19(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, -10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall20(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, -30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall21(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(60, 2, -50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall22(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void MazeWall23(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, 30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall24(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, 50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall25(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, 70); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall26(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, -10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall27(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, -30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall28(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(80, 2, -50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall29(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void MazeWall30(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, 30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall31(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, 50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall32(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, 70); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall33(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, -10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall34(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, -30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall35(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(100, 2, -50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall36(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void MazeWall37(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, 30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall38(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, 50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall39(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, 70); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall40(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, -10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall41(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, -30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall42(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(120, 2, -50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall43(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void MazeWall44(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, 30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall45(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, 50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall46(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, 70); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall47(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, -10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall48(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, -30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall49(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, -50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall50(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        private void MazeWall51(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, 30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall52(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, 50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall53(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, 70); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall54(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, -10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall55(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, -30); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void MazeWall56(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(160, 2, -50); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+
+
         #endregion
 
+        #region Vertical Walls
+
+
+
+        #endregion
+
+
+        #endregion
         #region CubeWalls
         private void CubeWall1(Scene level)
         {
@@ -1512,7 +2778,7 @@ namespace GDApp
                 clone.Transform.SetRotation(0, 0, 0);
                 clone.Transform.SetScale(5, 10, 150);
                 clone.Name = $"cube - {i}";
-                clone.Transform.Translate(160, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.Transform.Translate(170, 2, 10); //clone.Transform.Translate(10, 4f * (1 + i), 10);
                 clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
 
                 collider = new MyPlayerCollider();
@@ -1557,8 +2823,36 @@ namespace GDApp
                 level.Add(clone);
             }
         }
-        #endregion
 
+        private void CubeWall5(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(167.5f, 2, 85); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+        #endregion
         private void InitializeCollidableCubes(Scene level)//delete once done with cubes//
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
@@ -1606,11 +2900,8 @@ namespace GDApp
                 level.Add(clone);
             }
         }
-
         #endregion Student/Group Specific Code
-
         /******************************* Demo (Remove For Release) *******************************/
-
         #region Demo Code
 
 #if DEMO
