@@ -261,27 +261,42 @@ namespace GDApp
                           EventActionType.OnPause));
 
                 //walking sound effect//
-
-                object[] parameters3 = { "Walking_Grass" };
+                object[] parameters2 = { "Walking_Grass" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnStop, parameters3));
-
+                    EventActionType.OnStop, parameters2));
             }
+
             else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.O))
             {
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                     EventActionType.OnPlay));
             }
 
-            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F1))
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Q))
             {
-                object[] parameters = { "smokealarm" };
+                object[] parameters = { "announcement" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
-                    EventActionType.OnPlay2D, parameters));
+                    EventActionType.OnPlay, parameters));
             }
-            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F2))
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Q))
             {
-                object[] parameters = { "smokealarm" };
+                object[] parameters = { "announcement" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+            //testaudio
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.   P))
+            {
+                object[] parameters = { "testaudio" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay, parameters));
+            }
+
+            else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.P))
+            {
+                object[] parameters = { "testaudio" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnStop, parameters));
             }
@@ -478,6 +493,28 @@ namespace GDApp
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
                 false));
+
+            var soundEffect1 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/announcement");
+
+            //add the new sound effect
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "announcement",
+                soundEffect1,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
+
+            var soundEffect2 =
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/testaudio");
+
+            //add the new sound effect
+            soundManager.Add(new GDLibrary.Managers.Cue(
+                "testaudio",
+                soundEffect1,
+                SoundCategoryType.Alarm,
+                new Vector3(1, 0, 0),
+                false));
         }
 
         /// <summary>
@@ -499,6 +536,8 @@ namespace GDApp
             //environment
             textureDictionary.Add("grass", Content.Load<Texture2D>("Assets/Textures/Foliage/Ground/grass1"));
             textureDictionary.Add("crate1", Content.Load<Texture2D>("Assets/Textures/Props/Crates/crate1"));
+            textureDictionary.Add("yellow", Content.Load<Texture2D>("Assets/Textures/Props/Crates/yellow"));
+            textureDictionary.Add("blue", Content.Load<Texture2D>("Assets/Textures/Props/Crates/blue"));
 
             //ui
             textureDictionary.Add("ui_progress_32_8", Content.Load<Texture2D>("Assets/Textures/UI/Controls/ui_progress_32_8"));
@@ -624,7 +663,8 @@ namespace GDApp
                 fontDictionary["menu"],
                 Color.Black,
                 Vector2.Zero);
-
+            
+            
             //demo button color change
             var comp = new UIColorMouseOverBehaviour(Color.Green, Color.White);
             playBtn.AddComponent(comp);
@@ -990,6 +1030,8 @@ namespace GDApp
             InitializeCollidableCubes(level);
             //InitializeCollidableModels(level);
             InitializeCollidableTriangleMeshes(level);
+            announcement(level);
+            testaudio(level);
 
             CubeWall1(level);
             CubeWall2(level);
@@ -2782,6 +2824,84 @@ namespace GDApp
 
 
         #endregion
+
+        #region soundboxes
+
+        private void announcement(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Consumable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(1, 1, 1);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(20, 2, 15); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("yellow", shader, Color.White, 0.1f, textureDictionary["yellow"])));
+                clone.AddComponent(new PickupBehaviour("audio 1", 15, "announcement"));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(false, 1);
+
+                object[] parameters3 = { "announcement" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters3));
+
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+
+        private void testaudio(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Consumable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(0, 90, 0);
+                clone.Transform.SetScale(1, 1, 1);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(30, 2, 25); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("yellow", shader, Color.White, 0.1f, textureDictionary["yellow"])));
+                clone.AddComponent(new PickupBehaviour("audio 2", 10, "testaudio"));
+
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(false, 1);
+
+                object[] parameters1 = { "testaudio" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters1));
+
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+
+        #endregion
+
+
         #region CubeWalls
         private void CubeWall1(Scene level)
         {
