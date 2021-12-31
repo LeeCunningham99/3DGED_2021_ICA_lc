@@ -448,6 +448,7 @@ namespace GDApp
 
             textureDictionary.Add("hedgegame", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/hedgegame"));
             textureDictionary.Add("ui", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/ui"));
+            textureDictionary.Add("uitimer", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/uitimer"));
 
             //reticule
             textureDictionary.Add("reticuleOpen",
@@ -630,6 +631,20 @@ namespace GDApp
             //add the ui element to the scene
             mainGameUIScene.Add(healthTextureObj);
             */
+            var texture = textureDictionary["uitimer"];
+            var position = new Vector2(_graphics.PreferredBackBufferWidth / 0.99f, 980);
+            var origin = new Vector2(texture.Width / 1, texture.Height / 2);
+
+            var healthTextureObj = new UITextureObject("health",
+                UIObjectType.Texture,
+                new Transform2D(position, new Vector2(2.4f, 0.5f), 0),
+                0,
+                Color.Orange,
+                origin,
+                texture);
+            //healthTextureObj.AddComponent(new UITimeColorFlipBehaviour(Color.Green, Color.Pink, 2000));
+            healthTextureObj.AddComponent(new UiHealthController(100, 100));
+
 
             var hudTextureObj = new UITextureObject("ui",
                  UIObjectType.Texture,
@@ -639,7 +654,7 @@ namespace GDApp
                  0, Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/ui"));
             //add the ui element to the scene
             hudTextureObj.Color = Color.White;
-            //mainGameUIScene.Add(healthTextureObj);
+            mainGameUIScene.Add(healthTextureObj);
             mainGameUIScene.Add(hudTextureObj);
 
 
