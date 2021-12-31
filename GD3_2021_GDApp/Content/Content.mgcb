@@ -184,6 +184,12 @@
 /processorParam:Quality=Best
 /build:Assets/Sounds/Effects/smokealarm1.ogg
 
+#begin Assets/Sounds/Effects/Walking_Grass.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Assets/Sounds/Effects/Walking_Grass.wav
+
 #begin Assets/Textures/Architecture/Walls/backwall.jpg
 /importer:TextureImporter
 /processor:TextureProcessor

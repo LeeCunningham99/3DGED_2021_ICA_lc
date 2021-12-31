@@ -259,6 +259,13 @@ namespace GDApp
             {
                 EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
                           EventActionType.OnPause));
+
+                //walking sound effect//
+
+                object[] parameters3 = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters3));
+
             }
             else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.O))
             {
@@ -275,6 +282,64 @@ namespace GDApp
             else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.F2))
             {
                 object[] parameters = { "smokealarm" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            //walking sounds//
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.W))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.S))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.D))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            if (Input.Keys.WasJustReleased(Microsoft.Xna.Framework.Input.Keys.A))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnPlay2D, parameters));
+            }
+
+            //walking sounds//
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.W))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.A))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.S))
+            {
+                object[] parameters = { "Walking_Grass" };
+                EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
+                    EventActionType.OnStop, parameters));
+            }
+
+            if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.D))
+            {
+                object[] parameters = { "Walking_Grass" };
                 EventDispatcher.Raise(new EventData(EventCategoryType.Sound,
                     EventActionType.OnStop, parameters));
             }
@@ -404,11 +469,11 @@ namespace GDApp
         private void LoadSounds()
         {
             var soundEffect =
-                Content.Load<SoundEffect>("Assets/Sounds/Effects/smokealarm1");
+                Content.Load<SoundEffect>("Assets/Sounds/Effects/Walking_Grass");
 
             //add the new sound effect
             soundManager.Add(new GDLibrary.Managers.Cue(
-                "smokealarm",
+                "Walking_Grass",
                 soundEffect,
                 SoundCategoryType.Alarm,
                 new Vector3(1, 0, 0),
