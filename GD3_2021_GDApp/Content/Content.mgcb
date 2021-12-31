@@ -436,6 +436,18 @@
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/UI/Backgrounds/exitmenuwithtrans.png
 
+#begin Assets/Textures/UI/Backgrounds/hedgegame.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/UI/Backgrounds/hedgegame.png
+
 #begin Assets/Textures/UI/Backgrounds/mainmenu.PNG
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -447,6 +459,18 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Assets/Textures/UI/Backgrounds/mainmenu.PNG
+
+#begin Assets/Textures/UI/Backgrounds/ui.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Assets/Textures/UI/Backgrounds/ui.png
 
 #begin Assets/Textures/UI/Controls/genericbtn.png
 /importer:TextureImporter

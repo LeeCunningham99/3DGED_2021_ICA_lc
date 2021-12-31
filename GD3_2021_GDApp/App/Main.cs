@@ -446,6 +446,9 @@ namespace GDApp
             textureDictionary.Add("exitmenuwithtrans", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/exitmenuwithtrans"));
             textureDictionary.Add("genericbtn", Content.Load<Texture2D>("Assets/Textures/UI/Controls/genericbtn"));
 
+            textureDictionary.Add("hedgegame", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/hedgegame"));
+            textureDictionary.Add("ui", Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/ui"));
+
             //reticule
             textureDictionary.Add("reticuleOpen",
       Content.Load<Texture2D>("Assets/Textures/UI/Controls/reticuleOpen"));
@@ -516,12 +519,12 @@ namespace GDApp
             /**************************** Background Image ****************************/
 
             //main background
-            var texture = textureDictionary["mainmenu"];
+            var texture = textureDictionary["hedgegame"];
             //get how much we need to scale background to fit screen, then downsizes a little so we can see game behind background
             var scale = _graphics.GetScaleForTexture(texture,
-                new Vector2(0.8f, 0.8f));
+                new Vector2(1.4f, 0.8f));
 
-            menuObject = new UITextureObject("main background",
+            menuObject = new UITextureObject("hedgegame",
                 UIObjectType.Texture,
                 new Transform2D(Screen.Instance.ScreenCentre, scale, 0), //sets position as center of screen
                 0,
@@ -540,9 +543,10 @@ namespace GDApp
                 btnTexture.Width, btnTexture.Height);
             var origin = new Vector2(btnTexture.Width / 2.0f, btnTexture.Height / 2.0f);
 
+
             var playBtn = new UIButtonObject(AppData.MENU_PLAY_BTN_NAME, UIObjectType.Button,
                 new Transform2D(AppData.MENU_PLAY_BTN_POSITION,
-                0.5f * Vector2.One, 0),
+                0.9f * Vector2.One, 0),
                 0.1f,
                 Color.White,
                 SpriteEffects.None,
@@ -558,36 +562,14 @@ namespace GDApp
             //demo button color change
             var comp = new UIColorMouseOverBehaviour(Color.Green, Color.White);
             playBtn.AddComponent(comp);
+            //exit//
 
             mainMenuUIScene.Add(playBtn);
 
-
-            /**************************** Controls Button ****************************/
-
-            //same button texture so we can re-use texture, sourceRectangle and origin
-            /*
-            var controlsBtn = new UIButtonObject(AppData.MENU_CONTROLS_BTN_NAME, UIObjectType.Button,
-                new Transform2D(AppData.MENU_CONTROLS_BTN_POSITION, 0.5f * Vector2.One, 0),
-                0.1f,
-                Color.White,
-                origin,
-                btnTexture,
-                "Controls",
-                fontDictionary["menu"],
-                Color.Black);
-
-            //demo button color change
-            controlsBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Black, Color.White));
-
-            mainMenuUIScene.Add(controlsBtn);
-            */
-            /**************************** Exit Button ****************************/
-
-            //same button texture so we can re-use texture, sourceRectangle and origin
-
             //use a simple/smaller version of the UIButtonObject constructor
             var exitBtn = new UIButtonObject(AppData.MENU_EXIT_BTN_NAME, UIObjectType.Button,
-                new Transform2D(AppData.MENU_EXIT_BTN_POSITION, 0.5f * Vector2.One, 0),
+                new Transform2D(AppData.MENU_EXIT_BTN_POSITION,
+                0.9f * Vector2.One, 0),
                 0.1f,
                 Color.Orange,
                 origin,
@@ -598,7 +580,6 @@ namespace GDApp
 
             //demo button color change
             exitBtn.AddComponent(new UIColorMouseOverBehaviour(Color.Red, Color.White));
-
             mainMenuUIScene.Add(exitBtn);
 
             #endregion Main Menu
@@ -625,7 +606,7 @@ namespace GDApp
             var mainGameUIScene = new UIScene(AppData.UI_SCENE_MAIN_NAME);
 
             #region Add Health Bar
-
+            /*
             //add a health bar in the centre of the game window
             var texture = textureDictionary["progress_white"];
             var position = new Vector2(_graphics.PreferredBackBufferWidth / 2, 50);
@@ -648,28 +629,41 @@ namespace GDApp
 
             //add the ui element to the scene
             mainGameUIScene.Add(healthTextureObj);
+            */
+
+            var hudTextureObj = new UITextureObject("ui",
+                 UIObjectType.Texture,
+                 new Transform2D(new Vector2(6, 900),
+                 new Vector2(1.11f, 1),
+                 MathHelper.ToRadians(0)),
+                 0, Content.Load<Texture2D>("Assets/Textures/UI/Backgrounds/ui"));
+            //add the ui element to the scene
+            hudTextureObj.Color = Color.White;
+            //mainGameUIScene.Add(healthTextureObj);
+            mainGameUIScene.Add(hudTextureObj);
+
 
             #endregion Add Health Bar
 
             #region Add Text
 
-            var font = fontDictionary["ui"];
-            var str = "player name";
+            //var font = fontDictionary["ui"];
+            //var str = "player name";
 
             //create the UI element
-            nameTextObj = new UITextObject(str, UIObjectType.Text,
-                new Transform2D(new Vector2(50, 50),
-                Vector2.One, 0),
-                0, font, "Brutus Maximus");
+            //nameTextObj = new UITextObject(str, UIObjectType.Text,
+            //new Transform2D(new Vector2(50, 50),
+            //Vector2.One, 0),
+            //0, font, "Brutus Maximus");
 
             //  nameTextObj.Origin = font.MeasureString(str) / 2;
             //  nameTextObj.AddComponent(new UIExpandFadeBehaviour());
 
             //add the ui element to the scene
-            mainGameUIScene.Add(nameTextObj);
+            //mainGameUIScene.Add(nameTextObj);
 
             #endregion Add Text
-            
+
 
             #region Add Reticule
             /*
@@ -694,7 +688,7 @@ namespace GDApp
             mainGameUIScene.Add(reticule);
             */
             #endregion Add Reticule
-            
+
 
             #region Add Video UI Texture
 
