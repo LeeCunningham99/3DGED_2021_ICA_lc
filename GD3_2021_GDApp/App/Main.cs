@@ -1028,7 +1028,7 @@ namespace GDApp
         {
             InitializeCollidableGround(level, worldScale);
             InitializeCollidableCubes(level);
-            //InitializeCollidableModels(level);
+            InitializeSphere(level);
             InitializeCollidableTriangleMeshes(level);
             announcement(level);
             testaudio(level);
@@ -2897,11 +2897,7 @@ namespace GDApp
                 level.Add(clone);
             }
         }
-
-
         #endregion
-
-
         #region CubeWalls
         private void CubeWall1(Scene level)
         {
@@ -3047,6 +3043,49 @@ namespace GDApp
             }
         }
         #endregion
+
+        private void InitializeSphere(Scene level)
+        {
+            #region Reusable - You can copy and re-use this code elsewhere, if required
+
+            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
+            var shader = new BasicShader(Application.Content, false, true);
+
+            //create the sphere
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
+
+            #endregion Reusable - You can copy and re-use this code elsewhere, if required
+
+            GameObject clone = null;
+
+            for (int i = 0; i < 1; i+= 1)
+            {
+                clone = sphereArchetype.Clone() as GameObject;
+                clone.Name = $"sphere - {i}";
+                clone.Transform.SetTranslation(165 + i / -500f, 5 + 4 * i, -63);
+                clone.AddComponent(new ModelRenderer(
+                    modelDictionary["sphere"],
+                    new BasicMaterial("sphere_material",
+                    shader, Color.White, 1, textureDictionary["blue"])));
+
+                //add Collision Surface(s)
+                collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new JigLibX.Geometry.Sphere(
+                   sphereArchetype.Transform.LocalTranslation, 1),
+                    new MaterialProperties(0.8f, 0.8f, 0.7f));
+                collider.Enable(false, 1);
+
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+
+
+
+
+
         private void InitializeCollidableCubes(Scene level)//delete once done with cubes//
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
@@ -3095,6 +3134,17 @@ namespace GDApp
             }
         }
         #endregion Student/Group Specific Code
+
+
+
+
+
+
+
+
+
+
+
         /******************************* Demo (Remove For Release) *******************************/
         #region Demo Code
 
