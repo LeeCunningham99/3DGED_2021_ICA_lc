@@ -3113,11 +3113,6 @@ namespace GDApp
                     new BasicMaterial("cube_material", shader,
                     Color.White, 1f, textureDictionary["crate1"])));
 
-                //add desc and value to a pickup used when we collect/remove/collide with it
-                //clone.AddComponent(new PickupBehaviour("ammo pack", 15));
-
-                //add demo alpha change behaviour
-                //clone.AddComponent(new ColorLerpBehaviour(Color.White, Color.Red, 0.1f));
 
                 //add Collision Surface(s)
                 collider = new MyPlayerCollider();
