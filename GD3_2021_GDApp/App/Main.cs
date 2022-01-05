@@ -786,7 +786,7 @@ namespace GDApp
 
 
             #region Add Reticule
-            /*
+            
             var defaultTexture = textureDictionary["reticuleDefault"];
             var alternateTexture = textureDictionary["reticuleOpen"];
             origin = defaultTexture.GetOriginAtCenter();
@@ -806,7 +806,7 @@ namespace GDApp
             reticule.AddComponent(new UIReticuleBehaviour());
 
             mainGameUIScene.Add(reticule);
-            */
+            
             #endregion Add Reticule
 
 
@@ -3994,7 +3994,7 @@ namespace GDApp
             {
                 clone = sphereArchetype.Clone() as GameObject;
                 clone.Name = $"sphere - {i}";
-                clone.Transform.SetTranslation(165 + i / -500f, 5 + 4 * i, -5);
+                clone.Transform.SetTranslation(90 + i / -500f, 5 + 4 * i, -5);
                 clone.AddComponent(new ModelRenderer(
                     modelDictionary["sphere"],
                     new BasicMaterial("sphere_material",
@@ -4031,7 +4031,7 @@ namespace GDApp
             {
                 clone = sphereArchetype.Clone() as GameObject;
                 clone.Name = $"sphere - {i}";
-                clone.Transform.SetTranslation(165 + i / -500f, 5 + 4 * i, -5);
+                clone.Transform.SetTranslation(35 + i / -500f, 5 + 4 * i, -35);
                 clone.AddComponent(new ModelRenderer(
                     modelDictionary["sphere"],
                     new BasicMaterial("sphere_material",
