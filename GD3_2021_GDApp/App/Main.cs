@@ -1029,6 +1029,8 @@ namespace GDApp
             InitializeCollidableGround(level, worldScale);
             InitializeCollidableCubes(level);
             InitializeSphere(level);
+            InitializeSphere2(level);
+            InitializeSphere3(level);
             InitializeCollidableTriangleMeshes(level);
             announcement(level);
             testaudio(level);
@@ -1126,32 +1128,34 @@ namespace GDApp
         }
         private void InitializeCollidableTriangleMeshes(Scene level)
         {
+            /*
             //re - use the code on the gfx card, if we want to draw multiple objects using Clone
-            //  var shader = new BasicShader(Application.Content, false, true);
+              var shader = new BasicShader(Application.Content, false, true);
 
             //create the teapot
-            //var complexModel = new GameObject("teapot", GameObjectType.Environment, true);
-            //complexModel.Transform.SetTranslation(5, 0, 0);
-            //complexModel.Transform.SetScale(0.1f, 0.1f, 0.1f);
-            //complexModel.Transform.SetRotation(0, 45, 0);
-            //complexModel.AddComponent(new ModelRenderer(
-            //    modelDictionary["teapot"],
-            //    new BasicMaterial("teapot_material", shader,
-            //    Color.White, 1, textureDictionary["mona lisa"])));
+            var complexModel = new GameObject("teapot", GameObjectType.Environment, true);
+            complexModel.Transform.SetTranslation(5, 0, 0);
+            complexModel.Transform.SetScale(0.1f, 0.1f, 0.1f);
+            complexModel.Transform.SetRotation(0, 45, 0);
+            complexModel.AddComponent(new ModelRenderer(
+                modelDictionary["teapot"],
+                new BasicMaterial("teapot_material", shader,
+                Color.White, 1, textureDictionary["mona lisa"])));
 
             //add Collision Surface(s)
-            //collider = new Collider();
-            //complexModel.AddComponent(collider);
-            //collider.AddPrimitive(
-            //    CollisionUtility.GetTriangleMesh(modelDictionary["teapot"],
-            //    complexModel.Transform.LocalTranslation,
-            //    complexModel.Transform.LocalRotation,
-            //    complexModel.Transform.LocalScale),
-            //    new MaterialProperties(0.8f, 0.8f, 0.7f));
-            //collider.Enable(true, 1);
+            collider = new Collider();
+            complexModel.AddComponent(collider);
+            collider.AddPrimitive(
+                CollisionUtility.GetTriangleMesh(modelDictionary["teapot"],
+                complexModel.Transform.LocalTranslation,
+                complexModel.Transform.LocalRotation,
+                complexModel.Transform.LocalScale),
+                new MaterialProperties(0.8f, 0.8f, 0.7f));
+            collider.Enable(true, 1);
 
             //add To Scene Manager
-            //level.Add(complexModel);
+            level.Add(complexModel);
+            */
         }
         /*
         private void InitializeCollidableModels(Scene level)
@@ -3658,7 +3662,34 @@ namespace GDApp
             }
         }
 
+        private void MazeWall85(Scene level)
+        {
+            var shader = new BasicShader(Application.Content, false, true);
+            var mesh = new CubeMesh();
+            var cube = new GameObject("cube", GameObjectType.Interactable, false);
+            GameObject clone = null;
+            for (int i = 1; i < 2; i += 1)
+            {
+                clone = cube.Clone() as GameObject;
+                clone.Transform.SetRotation(180, 0, 0);
+                clone.Transform.SetScale(5, 10, 15);
+                clone.Name = $"cube - {i}";
+                clone.Transform.Translate(140, 2, -60); //clone.Transform.Translate(10, 4f * (1 + i), 10);
+                clone.AddComponent(new MeshRenderer(mesh, new BasicMaterial("grass_material", shader, Color.White, 1f, textureDictionary["grass"])));
 
+                collider = new MyPlayerCollider();
+                //collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new Box(
+                    clone.Transform.LocalTranslation,
+                    clone.Transform.LocalRotation,
+                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
+                    new MaterialProperties(0f, 0f, 0f));
+                collider.Enable(true, 1);
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
 
 
 
@@ -3724,7 +3755,6 @@ namespace GDApp
             }
         }
 
-
         private void testaudio(Scene level)
         {
             var shader = new BasicShader(Application.Content, false, true);
@@ -3759,7 +3789,9 @@ namespace GDApp
                 level.Add(clone);
             }
         }
+
         #endregion
+
         #region CubeWalls
         private void CubeWall1(Scene level)
         {
@@ -3906,6 +3938,7 @@ namespace GDApp
         }
         #endregion
 
+        #region sphere
         private void InitializeSphere(Scene level)
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
@@ -3943,10 +3976,81 @@ namespace GDApp
             }
         }
 
+        private void InitializeSphere2(Scene level)
+        {
+            #region Reusable - You can copy and re-use this code elsewhere, if required
 
+            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
+            var shader = new BasicShader(Application.Content, false, true);
 
+            //create the sphere
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
 
+            #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
+            GameObject clone = null;
+
+            for (int i = 0; i < 1; i += 1)
+            {
+                clone = sphereArchetype.Clone() as GameObject;
+                clone.Name = $"sphere - {i}";
+                clone.Transform.SetTranslation(265 + i / -500f, 5 + 4 * i, -23);
+                clone.AddComponent(new ModelRenderer(
+                    modelDictionary["sphere"],
+                    new BasicMaterial("sphere_material",
+                    shader, Color.White, 1, textureDictionary["blue"])));
+
+                //add Collision Surface(s)
+                collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new JigLibX.Geometry.Sphere(
+                   sphereArchetype.Transform.LocalTranslation, 1),
+                    new MaterialProperties(0.8f, 0.8f, 0.7f));
+                collider.Enable(false, 1);
+
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        private void InitializeSphere3(Scene level)
+        {
+            #region Reusable - You can copy and re-use this code elsewhere, if required
+
+            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
+            var shader = new BasicShader(Application.Content, false, true);
+
+            //create the sphere
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
+
+            #endregion Reusable - You can copy and re-use this code elsewhere, if required
+
+            GameObject clone = null;
+
+            for (int i = 0; i < 1; i += 1)
+            {
+                clone = sphereArchetype.Clone() as GameObject;
+                clone.Name = $"sphere - {i}";
+                clone.Transform.SetTranslation(165 + i / -400f, 5 + 4 * i, -53);
+                clone.AddComponent(new ModelRenderer(
+                    modelDictionary["sphere"],
+                    new BasicMaterial("sphere_material",
+                    shader, Color.White, 1, textureDictionary["blue"])));
+
+                //add Collision Surface(s)
+                collider = new Collider(false, false);
+                clone.AddComponent(collider);
+                collider.AddPrimitive(new JigLibX.Geometry.Sphere(
+                   sphereArchetype.Transform.LocalTranslation, 1),
+                    new MaterialProperties(0.8f, 0.8f, 0.7f));
+                collider.Enable(false, 1);
+
+                //add To Scene Manager
+                level.Add(clone);
+            }
+        }
+
+        #endregion
 
         private void InitializeCollidableCubes(Scene level)//delete once done with cubes//
         {
@@ -3991,16 +4095,6 @@ namespace GDApp
             }
         }
         #endregion Student/Group Specific Code
-
-
-
-
-
-
-
-
-
-
 
         /******************************* Demo (Remove For Release) *******************************/
         #region Demo Code
