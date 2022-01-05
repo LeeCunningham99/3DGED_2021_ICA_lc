@@ -3994,7 +3994,7 @@ namespace GDApp
             {
                 clone = sphereArchetype.Clone() as GameObject;
                 clone.Name = $"sphere - {i}";
-                clone.Transform.SetTranslation(265 + i / -500f, 5 + 4 * i, -23);
+                clone.Transform.SetTranslation(165 + i / -500f, 5 + 4 * i, -5);
                 clone.AddComponent(new ModelRenderer(
                     modelDictionary["sphere"],
                     new BasicMaterial("sphere_material",
@@ -4031,7 +4031,7 @@ namespace GDApp
             {
                 clone = sphereArchetype.Clone() as GameObject;
                 clone.Name = $"sphere - {i}";
-                clone.Transform.SetTranslation(165 + i / -400f, 5 + 4 * i, -53);
+                clone.Transform.SetTranslation(165 + i / -500f, 5 + 4 * i, -5);
                 clone.AddComponent(new ModelRenderer(
                     modelDictionary["sphere"],
                     new BasicMaterial("sphere_material",
