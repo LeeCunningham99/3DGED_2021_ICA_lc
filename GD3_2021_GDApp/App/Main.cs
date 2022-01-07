@@ -215,33 +215,6 @@ namespace GDApp
         /// <param name="gameTime"></param>
         protected override void Update(GameTime gameTime)
         {
-            //if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.P))
-            //{
-            //    //DEMO - raise event
-            //    //EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
-            //    //    EventActionType.OnPause));
-
-            //    object[] parameters = { nameTextObj };
-
-            //    EventDispatcher.Raise(new EventData(EventCategoryType.UiObject,
-            //        EventActionType.OnRemoveObject, parameters));
-
-            //    ////renderManager.StatusType = StatusType.Off;
-            //}
-            //else if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.U))
-            //{
-            //    //DEMO - raise event
-
-            //    object[] parameters = { "main game ui", nameTextObj };
-
-            //    EventDispatcher.Raise(new EventData(EventCategoryType.UiObject,
-            //        EventActionType.OnAddObject, parameters));
-
-            //    //renderManager.StatusType = StatusType.Drawn;
-            //    //EventDispatcher.Raise(new EventData(EventCategoryType.Menu,
-            //    //  EventActionType.OnPlay));
-            //}
-
             if (Input.Keys.WasJustPressed(Microsoft.Xna.Framework.Input.Keys.Up))
             {
                 object[] parameters = { "health", 1 };
@@ -784,7 +757,6 @@ namespace GDApp
 
             #endregion Add Text
 
-
             #region Add Reticule
             
             var defaultTexture = textureDictionary["reticuleDefault"];
@@ -808,7 +780,6 @@ namespace GDApp
             mainGameUIScene.Add(reticule);
             
             #endregion Add Reticule
-
 
             #region Add Video UI Texture
 
