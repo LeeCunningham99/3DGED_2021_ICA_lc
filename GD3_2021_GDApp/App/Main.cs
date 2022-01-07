@@ -3969,7 +3969,7 @@ namespace GDApp
                 collider.AddPrimitive(new JigLibX.Geometry.Sphere(
                    sphereArchetype.Transform.LocalTranslation, 1),
                     new MaterialProperties(0.8f, 0.8f, 0.7f));
-                collider.Enable(false, 1);
+                collider.Enable(false, 10);
 
                 //add To Scene Manager
                 level.Add(clone);
