@@ -357,7 +357,6 @@ namespace GDApp
 
         /******************************** Student Project-specific ********************************/
         /******************************** Student Project-specific ********************************/
-        /******************************** Student Project-specific ********************************/
 
         #region Student/Group Specific Code
 
