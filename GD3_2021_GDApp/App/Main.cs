@@ -3947,7 +3947,7 @@ namespace GDApp
             var shader = new BasicShader(Application.Content, false, true);
 
             //create the sphere
-            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Consumable, true);
 
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
@@ -3984,7 +3984,7 @@ namespace GDApp
             var shader = new BasicShader(Application.Content, false, true);
 
             //create the sphere
-            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Consumable, true);
 
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
@@ -4021,7 +4021,7 @@ namespace GDApp
             var shader = new BasicShader(Application.Content, false, true);
 
             //create the sphere
-            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
+            var sphereArchetype = new GameObject("sphere", GameObjectType.Consumable, true);
 
             #endregion Reusable - You can copy and re-use this code elsewhere, if required
 
