@@ -1027,7 +1027,6 @@ namespace GDApp
         private void InitializeCollidables(Scene level, float worldScale = 500)
         {
             InitializeCollidableGround(level, worldScale);
-            InitializeCollidableCubes(level);
             InitializeSphere(level);
             InitializeSphere2(level);
             InitializeSphere3(level);
@@ -4049,51 +4048,7 @@ namespace GDApp
                 level.Add(clone);
             }
         }
-
         #endregion
-
-        private void InitializeCollidableCubes(Scene level)//delete once done with cubes//
-        {
-            #region Reusable - You can copy and re-use this code elsewhere, if required
-
-            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
-            var shader = new BasicShader(Application.Content, false, true);
-            //re-use the mesh
-            var mesh = new CubeMesh();
-            //clone the cube
-            var cube = new GameObject("cube", GameObjectType.Consumable, false);
-
-            #endregion Reusable - You can copy and re-use this code elsewhere, if required
-
-            GameObject clone = null;
-
-            for (int i = 0; i < 5; i++)
-            {
-                //clone the archetypal cube
-                clone = cube.Clone() as GameObject;
-                clone.Transform.SetRotation(0, 45, 0);
-                clone.Transform.SetScale(1, 1, 1);
-                clone.Name = $"cube - {i}";
-                clone.Transform.Translate(5, 4f * (1 + i), 0);
-                clone.AddComponent(new MeshRenderer(mesh,
-                    new BasicMaterial("cube_material", shader,
-                    Color.White, 1f, textureDictionary["crate1"])));
-
-
-                //add Collision Surface(s)
-                collider = new MyPlayerCollider();
-
-                clone.AddComponent(collider);
-                collider.AddPrimitive(new Box(
-                    clone.Transform.LocalTranslation,
-                    clone.Transform.LocalRotation,
-                    clone.Transform.LocalScale * 1.01f), //make the colliders a fraction larger so that transparent boxes dont sit exactly on the ground and we end up with flicker or z-fighting
-                    new MaterialProperties(0.8f, 0.8f, 0.7f));
-                collider.Enable(false, 10);
-                //add To Scene Manager
-                level.Add(clone);
-            }
-        }
         #endregion Student/Group Specific Code
     }
 }
