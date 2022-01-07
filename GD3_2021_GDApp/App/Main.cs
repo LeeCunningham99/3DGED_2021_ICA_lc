@@ -1030,7 +1030,6 @@ namespace GDApp
             InitializeSphere(level);
             InitializeSphere2(level);
             InitializeSphere3(level);
-            InitializeCollidableTriangleMeshes(level);
             announcement(level);
             testaudio(level);
 
@@ -1125,75 +1124,6 @@ namespace GDApp
             MazeWall83(level);
             MazeWall84(level);
         }
-        private void InitializeCollidableTriangleMeshes(Scene level)
-        {
-            /*
-            //re - use the code on the gfx card, if we want to draw multiple objects using Clone
-              var shader = new BasicShader(Application.Content, false, true);
-
-            //create the teapot
-            var complexModel = new GameObject("teapot", GameObjectType.Environment, true);
-            complexModel.Transform.SetTranslation(5, 0, 0);
-            complexModel.Transform.SetScale(0.1f, 0.1f, 0.1f);
-            complexModel.Transform.SetRotation(0, 45, 0);
-            complexModel.AddComponent(new ModelRenderer(
-                modelDictionary["teapot"],
-                new BasicMaterial("teapot_material", shader,
-                Color.White, 1, textureDictionary["mona lisa"])));
-
-            //add Collision Surface(s)
-            collider = new Collider();
-            complexModel.AddComponent(collider);
-            collider.AddPrimitive(
-                CollisionUtility.GetTriangleMesh(modelDictionary["teapot"],
-                complexModel.Transform.LocalTranslation,
-                complexModel.Transform.LocalRotation,
-                complexModel.Transform.LocalScale),
-                new MaterialProperties(0.8f, 0.8f, 0.7f));
-            collider.Enable(true, 1);
-
-            //add To Scene Manager
-            level.Add(complexModel);
-            */
-        }
-        /*
-        private void InitializeCollidableModels(Scene level)
-        {
-            #region Reusable - You can copy and re-use this code elsewhere, if required
-
-            //re-use the code on the gfx card, if we want to draw multiple objects using Clone
-            var shader = new BasicShader(Application.Content, false, true);
-
-            //create the sphere
-            var sphereArchetype = new GameObject("sphere", GameObjectType.Interactable, true);
-
-            #endregion Reusable - You can copy and re-use this code elsewhere, if required
-
-            GameObject clone = null;
-
-            for (int i = 0; i < 5; i++)
-            {
-                clone = sphereArchetype.Clone() as GameObject;
-                clone.Name = $"sphere - {i}";
-                clone.Transform.SetTranslation(-5 + i / 10f, 5 + 4 * i, 0);
-                clone.AddComponent(new ModelRenderer(
-                    modelDictionary["sphere"],
-                    new BasicMaterial("sphere_material",
-                    shader, Color.White, 1, textureDictionary["checkerboard"])));
-
-                //add Collision Surface(s)
-                collider = new Collider(false, false);
-                clone.AddComponent(collider);
-                collider.AddPrimitive(new JigLibX.Geometry.Sphere(
-                   sphereArchetype.Transform.LocalTranslation, 1),
-                    new MaterialProperties(0.8f, 0.8f, 0.7f));
-                collider.Enable(false, 1);
-
-                //add To Scene Manager
-                level.Add(clone);
-            }
-        }
-        */
         private void InitializeCollidableGround(Scene level, float worldScale)
         {
             #region Reusable - You can copy and re-use this code elsewhere, if required
